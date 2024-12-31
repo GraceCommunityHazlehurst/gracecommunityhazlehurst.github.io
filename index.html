@@ -3,8 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="https://cdn.icon-icons.com/icons2/619/PNG/512/church-black-silhouette-with-a-cross-on-top_icon-icons.com_56737.png" type="image/png">
     <title>Grace Community Church of God</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="https://cdn.icon-icons.com/icons2/619/PNG/512/church-black-silhouette-with-a-cross-on-top_icon-icons.com_56737.png" type="image/png">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -13,8 +18,11 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css">
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- AOS Library for Scroll Animations -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+
+    <!-- Swiper.js for Sliders -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 
     <!-- Your CSS file -->
     <link rel="stylesheet" href="styles.css">
@@ -23,17 +31,17 @@
     <style>
         /* CSS Variables for Theme Colors */
         :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #e67e22;
-            --accent-color: #f39c12;
-            --background-color: #f5f5f5;
-            --light-color: #ecf0f1;
-            --text-color: #333;
-            --light-text: #777;
+            --primary-color: #1e3d59;
+            --secondary-color: #f95738;
+            --accent-color: #ff6f61;
+            --background-color: #f0f4f8;
+            --light-color: #ffffff;
+            --text-color: #333333;
+            --light-text: #777777;
             --max-width: 1200px;
             --transition-speed: 0.3s;
-            --border-radius: 8px;
-            --header-height: 70px;
+            --border-radius: 12px;
+            --header-height: 80px;
         }
 
         /* Reset and Base Styles */
@@ -75,11 +83,12 @@
             height: var(--header-height);
             display: flex;
             align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
         nav.scrolled {
-            background: rgba(44, 62, 80, 0.95);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            background: rgba(30, 61, 89, 0.95);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
 
         nav .container {
@@ -94,6 +103,7 @@
             text-decoration: none;
             color: #fff;
             transition: color var(--transition-speed) ease;
+            letter-spacing: 1px;
         }
 
         nav .logo:hover {
@@ -107,7 +117,7 @@
         }
 
         nav .nav-links li {
-            margin-left: 2rem;
+            margin-left: 2.5rem;
         }
 
         nav .nav-links a {
@@ -116,6 +126,7 @@
             font-weight: 500;
             transition: color var(--transition-speed) ease;
             position: relative;
+            font-size: 1rem;
         }
 
         nav .nav-links a::after {
@@ -123,7 +134,7 @@
             display: block;
             width: 0;
             height: 2px;
-            background: var(--secondary-color);
+            background: var(--accent-color);
             transition: width var(--transition-speed) ease;
             position: absolute;
             bottom: -5px;
@@ -136,12 +147,12 @@
 
         nav .hamburger {
             display: none;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             cursor: pointer;
             color: #fff;
         }
 
-        /* Hero Section with Parallax Effect */
+        /* Hero Section with Enhanced Parallax Effect */
         .hero {
             height: 100vh;
             background: url('https://images.unsplash.com/photo-1508829040592-72f179f8a73f') no-repeat center center/cover;
@@ -151,15 +162,18 @@
             justify-content: center;
             background-attachment: fixed;
             overflow: hidden;
+            z-index: 1;
         }
 
-        .hero .overlay {
+        .hero::before {
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(44, 62, 80, 0.6);
+            background: rgba(30, 61, 89, 0.7);
+            z-index: -1;
             transition: background var(--transition-speed) ease;
         }
 
@@ -167,58 +181,60 @@
             position: relative;
             color: #fff;
             text-align: center;
-            z-index: 1;
+            z-index: 2;
             max-width: 800px;
             padding: 0 1rem;
-            animation: fadeIn 1.5s ease-out;
+            animation: fadeIn 2s ease-out;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
+            from { opacity: 0; transform: translateY(-30px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         .hero-content h1 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             margin-bottom: 1rem;
             font-weight: 700;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
-            animation: slideInDown 1s ease-out;
+            text-shadow: 3px 3px 10px rgba(0,0,0,0.6);
+            animation: slideInDown 1.5s ease-out;
         }
 
         @keyframes slideInDown {
-            from { opacity: 0; transform: translateY(-50px); }
+            from { opacity: 0; transform: translateY(-60px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         .hero-content p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
             font-weight: 300;
-            text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
-            animation: fadeIn 2s ease-out;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+            animation: fadeIn 2.5s ease-out;
         }
 
         .hero-content .btn {
-            background: var(--secondary-color);
+            background: var(--accent-color);
             color: #fff;
-            padding: 0.8rem 2rem;
+            padding: 0.9rem 2.5rem;
             text-decoration: none;
             border-radius: var(--border-radius);
             font-weight: 600;
             transition: background var(--transition-speed) ease, transform var(--transition-speed) ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+            font-size: 1rem;
         }
 
         .hero-content .btn:hover {
-            background: var(--accent-color);
+            background: #ff8566;
             transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
         }
 
         /* About Section */
         .about {
             background: #fff;
-            padding: 4rem 0;
+            padding: 5rem 0;
             animation: fadeInUp 1s ease-out;
         }
 
@@ -229,19 +245,20 @@
 
         .about h2 {
             text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
+            font-size: 2.8rem;
+            margin-bottom: 2rem;
             color: var(--primary-color);
             position: relative;
+            font-weight: 700;
         }
 
         .about h2::after {
             content: '';
-            width: 50px;
-            height: 3px;
-            background: var(--secondary-color);
+            width: 60px;
+            height: 4px;
+            background: var(--accent-color);
             display: block;
-            margin: 10px auto 0;
+            margin: 15px auto 0;
             border-radius: var(--border-radius);
         }
 
@@ -251,12 +268,13 @@
             margin: 0 auto 3rem;
             font-size: 1.1rem;
             color: var(--light-text);
+            line-height: 1.8;
         }
 
         .about-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 2rem;
+            gap: 3rem;
             align-items: center;
         }
 
@@ -264,96 +282,106 @@
             border-radius: var(--border-radius);
             object-fit: cover;
             width: 100%;
-            height: 300px;
-            transition: transform var(--transition-speed) ease;
+            height: 350px;
+            transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
             cursor: pointer;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
         }
 
         .about-content img:hover {
             transform: scale(1.05);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.2);
         }
 
         .about-text h3 {
-            font-size: 1.8rem;
+            font-size: 2rem;
             margin-bottom: 1rem;
             color: var(--primary-color);
+            font-weight: 600;
         }
 
         .about-text p {
-            font-size: 1rem;
+            font-size: 1.05rem;
             margin-bottom: 1.5rem;
             color: var(--light-text);
+            line-height: 1.8;
         }
 
         .about-text .btn {
-            background: var(--secondary-color);
+            background: var(--accent-color);
             color: #fff;
-            padding: 0.7rem 1.5rem;
+            padding: 0.8rem 2rem;
             text-decoration: none;
             border-radius: var(--border-radius);
             font-weight: 600;
             transition: background var(--transition-speed) ease, transform var(--transition-speed) ease;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
         }
 
         .about-text .btn:hover {
-            background: var(--accent-color);
+            background: #ff8566;
             transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
         }
 
-        /* Sermons Section */
+        /* Sermons Section with Carousel */
         .sermons {
             background: var(--background-color);
-            padding: 4rem 0;
+            padding: 5rem 0;
             animation: fadeInUp 1s ease-out;
         }
 
         .sermons h2 {
             text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
+            font-size: 2.8rem;
+            margin-bottom: 2rem;
             color: var(--primary-color);
             position: relative;
+            font-weight: 700;
         }
 
         .sermons h2::after {
             content: '';
-            width: 50px;
-            height: 3px;
-            background: var(--secondary-color);
+            width: 60px;
+            height: 4px;
+            background: var(--accent-color);
             display: block;
-            margin: 10px auto 0;
+            margin: 15px auto 0;
             border-radius: var(--border-radius);
         }
 
         .sermon-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            display: flex;
+            overflow-x: auto;
             gap: 2rem;
+            padding: 1rem;
         }
 
         .sermon {
             background: #fff;
             border-radius: var(--border-radius);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
             overflow: hidden;
             transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+            flex: 0 0 300px;
             display: flex;
             flex-direction: column;
+            position: relative;
         }
 
         .sermon:hover {
             transform: translateY(-10px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.2);
         }
 
-        .sermon img {
+        .sermon img, .sermon video {
             width: 100%;
             height: 200px;
             object-fit: cover;
             transition: transform var(--transition-speed) ease;
         }
 
-        .sermon img:hover {
+        .sermon img:hover, .sermon video:hover {
             transform: scale(1.05);
         }
 
@@ -365,247 +393,187 @@
         }
 
         .sermon-content h3 {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             margin-bottom: 0.8rem;
             color: var(--primary-color);
+            font-weight: 600;
         }
 
         .sermon-content p {
-            font-size: 0.95rem;
+            font-size: 1rem;
             margin-bottom: 1rem;
             color: var(--light-text);
             flex-grow: 1;
         }
 
         .sermon-content .btn.read-more {
-            background: var(--secondary-color);
+            background: var(--accent-color);
             color: #fff;
-            padding: 0.5rem 1.2rem;
+            padding: 0.6rem 1.5rem;
             text-decoration: none;
             border-radius: var(--border-radius);
             font-weight: 600;
             transition: background var(--transition-speed) ease, transform var(--transition-speed) ease;
             align-self: flex-start;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
         .sermon-content .btn.read-more:hover {
-            background: var(--accent-color);
+            background: #ff8566;
             transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
         }
 
-        /* Facebook Posts Section */
+        /* Facebook Posts Section with Carousel */
         .facebook-posts {
             background: #fff;
-            padding: 4rem 0;
+            padding: 5rem 0;
             animation: fadeInUp 1s ease-out;
         }
 
         .facebook-posts h2 {
             text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
+            font-size: 2.8rem;
+            margin-bottom: 2rem;
             color: var(--primary-color);
             position: relative;
+            font-weight: 700;
         }
 
         .facebook-posts h2::after {
             content: '';
-            width: 50px;
-            height: 3px;
-            background: var(--secondary-color);
+            width: 60px;
+            height: 4px;
+            background: var(--accent-color);
             display: block;
-            margin: 10px auto 0;
+            margin: 15px auto 0;
             border-radius: var(--border-radius);
         }
 
         .post-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            display: flex;
+            overflow-x: auto;
             gap: 2rem;
+            padding: 1rem;
         }
 
         .post {
             background: #f9f9f9;
             border-radius: var(--border-radius);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
             overflow: hidden;
             transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+            flex: 0 0 300px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
         }
 
         .post:hover {
             transform: translateY(-10px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.1);
         }
 
         .post img {
             width: 100%;
             height: 200px;
             object-fit: cover;
+            transition: transform var(--transition-speed) ease;
+        }
+
+        .post img:hover {
+            transform: scale(1.05);
         }
 
         .post-content {
             padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
         }
 
         .post-content p {
-            font-size: 0.95rem;
+            font-size: 1rem;
             margin-bottom: 1rem;
             color: var(--light-text);
+            flex-grow: 1;
+            line-height: 1.6;
         }
 
         .post-content a {
-            color: var(--secondary-color);
+            color: var(--accent-color);
             text-decoration: none;
             font-weight: 600;
             transition: color var(--transition-speed) ease;
-        }
-
-        .post-content a:hover {
-            color: var(--accent-color);
-        }
-
-        /* Events Section */
-        .events {
-            background: #fff;
-            padding: 4rem 0;
-            animation: fadeInUp 1s ease-out;
-        }
-
-        .events h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            color: var(--primary-color);
-            position: relative;
-        }
-
-        .events h2::after {
-            content: '';
-            width: 50px;
-            height: 3px;
-            background: var(--secondary-color);
-            display: block;
-            margin: 10px auto 0;
-            border-radius: var(--border-radius);
-        }
-
-        .event-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
-        .event {
-            background: #f9f9f9;
-            border-radius: var(--border-radius);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            overflow: hidden;
-            transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .event:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-        }
-
-        .event img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            transition: transform var(--transition-speed) ease;
-        }
-
-        .event img:hover {
-            transform: scale(1.05);
-        }
-
-        .event-content {
-            padding: 1.5rem;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .event-content h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.8rem;
-            color: var(--primary-color);
-        }
-
-        .event-content p {
-            font-size: 0.95rem;
-            margin-bottom: 1rem;
-            color: var(--light-text);
-            flex-grow: 1;
-        }
-
-        .event-content .btn {
-            background: var(--secondary-color);
-            color: #fff;
-            padding: 0.5rem 1.2rem;
-            text-decoration: none;
-            border-radius: var(--border-radius);
-            font-weight: 600;
-            transition: background var(--transition-speed) ease, transform var(--transition-speed) ease;
             align-self: flex-start;
         }
 
-        .event-content .btn:hover {
-            background: var(--accent-color);
-            transform: scale(1.05);
+        .post-content a:hover {
+            color: #ff8566;
         }
 
         /* Interactive Bible Section */
         .interactive-bible {
             background: #fff;
-            padding: 4rem 0;
+            padding: 5rem 0;
             animation: fadeInUp 1s ease-out;
         }
 
         .interactive-bible h2 {
             text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
+            font-size: 2.8rem;
+            margin-bottom: 2rem;
             color: var(--primary-color);
             position: relative;
+            font-weight: 700;
         }
 
         .interactive-bible h2::after {
             content: '';
-            width: 50px;
-            height: 3px;
-            background: var(--secondary-color);
+            width: 60px;
+            height: 4px;
+            background: var(--accent-color);
             display: block;
-            margin: 10px auto 0;
+            margin: 15px auto 0;
             border-radius: var(--border-radius);
         }
 
         .bible-container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             text-align: center;
+            padding: 2rem;
+            border: 2px solid var(--accent-color);
+            border-radius: var(--border-radius);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            background: var(--light-color);
+            transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+        }
+
+        .bible-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.15);
         }
 
         .bible-controls {
             display: flex;
             justify-content: center;
-            gap: 1rem;
+            gap: 1.5rem;
             margin-bottom: 2rem;
             flex-wrap: wrap;
         }
 
         .bible-controls select, .bible-controls button {
-            padding: 0.5rem 1rem;
+            padding: 0.6rem 1.5rem;
             border: 1px solid #ddd;
             border-radius: var(--border-radius);
             font-size: 1rem;
             transition: border var(--transition-speed) ease, background var(--transition-speed) ease;
+            width: 150px;
         }
 
         .bible-controls select:focus, .bible-controls button:hover {
-            border-color: var(--secondary-color);
+            border-color: var(--accent-color);
             background: var(--light-color);
             outline: none;
         }
@@ -614,12 +582,16 @@
             background: #f9f9f9;
             padding: 2rem;
             border-radius: var(--border-radius);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.05);
             font-size: 1.2rem;
             color: var(--text-color);
-            min-height: 100px;
+            min-height: 120px;
             position: relative;
             transition: all var(--transition-speed) ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
         }
 
         .bible-verse::before {
@@ -628,7 +600,7 @@
             position: absolute;
             top: -20px;
             left: -10px;
-            color: var(--secondary-color);
+            color: var(--accent-color);
         }
 
         .bible-verse::after {
@@ -637,51 +609,67 @@
             position: absolute;
             bottom: -20px;
             right: -10px;
-            color: var(--secondary-color);
+            color: var(--accent-color);
         }
 
         /* Random Verse Generator */
         .random-verse {
-            background: #f5f5f5;
-            padding: 4rem 0;
+            background: var(--background-color);
+            padding: 5rem 0;
             animation: fadeInUp 1s ease-out;
         }
 
         .random-verse h2 {
             text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
+            font-size: 2.8rem;
+            margin-bottom: 2rem;
             color: var(--primary-color);
             position: relative;
+            font-weight: 700;
         }
 
         .random-verse h2::after {
             content: '';
-            width: 50px;
-            height: 3px;
-            background: var(--secondary-color);
+            width: 60px;
+            height: 4px;
+            background: var(--accent-color);
             display: block;
-            margin: 10px auto 0;
+            margin: 15px auto 0;
             border-radius: var(--border-radius);
         }
 
         .random-verse-container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             text-align: center;
+            padding: 2rem;
+            border: 2px solid var(--accent-color);
+            border-radius: var(--border-radius);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            background: var(--light-color);
+            transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+        }
+
+        .random-verse-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.15);
         }
 
         .random-verse .verse-text {
-            background: #fff;
+            background: #f9f9f9;
             padding: 2rem;
             border-radius: var(--border-radius);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.05);
             font-size: 1.2rem;
             color: var(--text-color);
-            min-height: 100px;
+            min-height: 120px;
             position: relative;
             margin-bottom: 1.5rem;
             transition: all var(--transition-speed) ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
         }
 
         .random-verse .verse-text::before {
@@ -690,7 +678,7 @@
             position: absolute;
             top: -20px;
             left: -10px;
-            color: var(--secondary-color);
+            color: var(--accent-color);
         }
 
         .random-verse .verse-text::after {
@@ -699,11 +687,11 @@
             position: absolute;
             bottom: -20px;
             right: -10px;
-            color: var(--secondary-color);
+            color: var(--accent-color);
         }
 
         .random-verse .generate-btn {
-            background: var(--secondary-color);
+            background: var(--accent-color);
             color: #fff;
             padding: 0.8rem 2rem;
             border: none;
@@ -712,41 +700,44 @@
             font-weight: 600;
             cursor: pointer;
             transition: background var(--transition-speed) ease, transform var(--transition-speed) ease;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
         }
 
         .random-verse .generate-btn:hover {
-            background: var(--accent-color);
+            background: #ff8566;
             transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
         }
 
         /* Fishing for Men Game Section */
         .fishing-game {
             background: #fff;
-            padding: 4rem 0;
+            padding: 5rem 0;
             animation: fadeInUp 1s ease-out;
             position: relative;
         }
 
         .fishing-game h2 {
             text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
+            font-size: 2.8rem;
+            margin-bottom: 2rem;
             color: var(--primary-color);
             position: relative;
+            font-weight: 700;
         }
 
         .fishing-game h2::after {
             content: '';
-            width: 50px;
-            height: 3px;
-            background: var(--secondary-color);
+            width: 60px;
+            height: 4px;
+            background: var(--accent-color);
             display: block;
-            margin: 10px auto 0;
+            margin: 15px auto 0;
             border-radius: var(--border-radius);
         }
 
         .game-container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             text-align: center;
             position: relative;
@@ -754,100 +745,115 @@
 
         /* Canvas for Game */
         #gameCanvas {
-            border: 2px solid var(--secondary-color);
+            border: 3px solid var(--accent-color);
             border-radius: var(--border-radius);
             background: #e0f7fa;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+        }
+
+        #gameCanvas:hover {
+            transform: scale(1.02);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.15);
         }
 
         .game-controls {
-            margin-top: 1rem;
+            margin-top: 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
         }
 
         .game-controls button {
-            background: var(--secondary-color);
+            background: var(--accent-color);
             color: #fff;
-            padding: 0.7rem 1.5rem;
+            padding: 0.8rem 2rem;
             border: none;
             border-radius: var(--border-radius);
             font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
             transition: background var(--transition-speed) ease, transform var(--transition-speed) ease;
-            margin: 0 0.5rem;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
         }
 
         .game-controls button:hover {
-            background: var(--accent-color);
+            background: #ff8566;
             transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
         }
 
         .game-status {
-            margin-top: 1rem;
-            font-size: 1.2rem;
+            margin-top: 1.5rem;
+            font-size: 1.3rem;
             color: var(--primary-color);
+            font-weight: 600;
         }
 
         /* Map Section */
         .map {
             background: var(--background-color);
-            padding: 4rem 0;
+            padding: 5rem 0;
             animation: fadeInUp 1s ease-out;
         }
 
         .map h2 {
             text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
+            font-size: 2.8rem;
+            margin-bottom: 2rem;
             color: var(--primary-color);
             position: relative;
+            font-weight: 700;
         }
 
         .map h2::after {
             content: '';
-            width: 50px;
-            height: 3px;
-            background: var(--secondary-color);
+            width: 60px;
+            height: 4px;
+            background: var(--accent-color);
             display: block;
-            margin: 10px auto 0;
+            margin: 15px auto 0;
             border-radius: var(--border-radius);
         }
 
         #osm-map {
             width: 100%;
-            height: 400px;
+            height: 500px;
             border-radius: var(--border-radius);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
         }
 
         /* Contact Section */
         .contact {
             background: var(--background-color);
-            padding: 4rem 0;
+            padding: 5rem 0;
             animation: fadeInUp 1s ease-out;
         }
 
         .contact h2 {
             text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
+            font-size: 2.8rem;
+            margin-bottom: 2rem;
             color: var(--primary-color);
             position: relative;
+            font-weight: 700;
         }
 
         .contact h2::after {
             content: '';
-            width: 50px;
-            height: 3px;
-            background: var(--secondary-color);
+            width: 60px;
+            height: 4px;
+            background: var(--accent-color);
             display: block;
-            margin: 10px auto 0;
+            margin: 15px auto 0;
             border-radius: var(--border-radius);
         }
 
         .contact-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 2rem;
+            gap: 3rem;
             align-items: center;
         }
 
@@ -855,36 +861,40 @@
             border-radius: var(--border-radius);
             object-fit: cover;
             width: 100%;
-            height: 300px;
-            transition: transform var(--transition-speed) ease;
+            height: 350px;
+            transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
             cursor: pointer;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
         }
 
         .contact-content img:hover {
             transform: scale(1.05);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.15);
         }
 
         #contact-form {
             background: #fff;
-            padding: 2rem;
+            padding: 2.5rem;
             border-radius: var(--border-radius);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
             transition: transform var(--transition-speed) ease;
         }
 
         #contact-form:hover {
             transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.1);
         }
 
         .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.8rem;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.7rem;
             color: var(--primary-color);
             font-weight: 600;
+            font-size: 1rem;
         }
 
         .form-group label span {
@@ -894,42 +904,44 @@
         .form-group input,
         .form-group textarea {
             width: 100%;
-            padding: 0.75rem 1rem;
+            padding: 0.8rem 1.2rem;
             border: 1px solid #ddd;
             border-radius: var(--border-radius);
             font-size: 1rem;
             transition: border var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+            outline: none;
         }
 
         .form-group input:focus,
         .form-group textarea:focus {
-            border-color: var(--secondary-color);
-            outline: none;
-            box-shadow: 0 0 5px rgba(231, 126, 34, 0.5);
+            border-color: var(--accent-color);
+            box-shadow: 0 0 5px rgba(255,111,102, 0.5);
         }
 
         .btn-submit {
-            background: var(--primary-color);
+            background: var(--accent-color);
             color: #fff;
             border: none;
-            padding: 0.8rem 2rem;
+            padding: 0.9rem 2.5rem;
             cursor: pointer;
             border-radius: var(--border-radius);
             font-size: 1rem;
             font-weight: 600;
             transition: background var(--transition-speed) ease, transform var(--transition-speed) ease;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
         }
 
         .btn-submit:hover {
-            background: var(--secondary-color);
+            background: #ff8566;
             transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
         }
 
         /* Footer */
         footer {
             background: var(--primary-color);
             color: #fff;
-            padding: 2rem 0;
+            padding: 3rem 0;
             animation: fadeInUp 1s ease-out;
         }
 
@@ -937,12 +949,12 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
         }
 
         .footer-logo {
-            width: 80px;
-            height: 80px;
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
             object-fit: cover;
             margin-bottom: 1rem;
@@ -954,23 +966,26 @@
         }
 
         .footer-top p {
-            font-size: 1rem;
+            font-size: 1.1rem;
+            max-width: 600px;
+            text-align: center;
         }
 
         .social-links {
             display: flex;
             justify-content: center;
-            gap: 1rem;
+            gap: 1.5rem;
+            margin-top: 1rem;
         }
 
         .social-links a {
             color: #fff;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             transition: color var(--transition-speed) ease;
         }
 
         .social-links a:hover {
-            color: var(--secondary-color);
+            color: var(--accent-color);
         }
 
         /* Global Image Styles */
@@ -980,94 +995,13 @@
             display: block;
         }
 
-        /* Specific Image Constraints */
-        .img-fixed-height {
-            max-height: 300px;
-            width: 100%;
-            object-fit: cover;
-            border-radius: var(--border-radius);
-        }
-
-        /* Facebook Posts Section */
-        .facebook-posts {
-            background: #fff;
-            padding: 4rem 0;
-            animation: fadeInUp 1s ease-out;
-        }
-
-        .facebook-posts h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            color: var(--primary-color);
-            position: relative;
-        }
-
-        .facebook-posts h2::after {
-            content: '';
-            width: 50px;
-            height: 3px;
-            background: var(--secondary-color);
-            display: block;
-            margin: 10px auto 0;
-            border-radius: var(--border-radius);
-        }
-
-        .post-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
-        .post {
-            background: #f9f9f9;
-            border-radius: var(--border-radius);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            overflow: hidden;
-            transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
-        }
-
-        .post:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-        }
-
-        .post img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-
-        .post-content {
-            padding: 1.5rem;
-        }
-
-        .post-content p {
-            font-size: 0.95rem;
-            margin-bottom: 1rem;
-            color: var(--light-text);
-        }
-
-        .post-content a {
-            color: var(--secondary-color);
-            text-decoration: none;
-            font-weight: 600;
-            transition: color var(--transition-speed) ease;
-        }
-
-        .post-content a:hover {
-            color: var(--accent-color);
-        }
-
         /* Responsive Styles */
 
         /* Tablets and Below */
         @media (max-width: 992px) {
             .about-content,
             .contact-content,
-            .bible-controls,
             .sermon-list,
-            .event-list,
             .post-list {
                 grid-template-columns: 1fr;
             }
@@ -1095,10 +1029,6 @@
                 left: 0;
             }
 
-            .bible-controls {
-                flex-direction: column;
-            }
-
             .game-container {
                 width: 100%;
             }
@@ -1120,45 +1050,43 @@
             }
 
             .sermons h2,
-            .events h2,
+            .facebook-posts h2,
             .about h2,
             .contact h2,
             .interactive-bible h2,
             .random-verse h2,
             .fishing-game h2,
-            .map h2,
-            .facebook-posts h2 {
-                font-size: 2rem;
+            .map h2 {
+                font-size: 2.2rem;
             }
 
             .sermon-content h3,
             .event-content h3,
             .about-text h3 {
-                font-size: 1.3rem;
+                font-size: 1.4rem;
             }
 
             .about-text p,
             .sermon-content p,
             .event-content p,
             .post-content p {
-                font-size: 0.95rem;
+                font-size: 1rem;
             }
 
             .footer-logo {
-                width: 60px;
-                height: 60px;
+                width: 80px;
+                height: 80px;
             }
 
             .social-links a {
-                font-size: 1.2rem;
+                font-size: 1.5rem;
             }
 
             .about-content img,
             .contact-content img,
             .sermon img,
-            .event img,
             .post img {
-                height: 200px;
+                height: 250px;
             }
 
             .game-controls button {
@@ -1173,17 +1101,21 @@
     </style>
 </head>
 <body>
-<div id="fb-root"></div>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v21.0"></script>
+    <!-- Facebook SDK -->
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v21.0"></script>
+
     <!-- Navigation -->
     <nav id="navbar">
         <div class="container">
             <a href="#home" class="logo">Grace Community</a>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
                 <li><a href="#sermons">Sermons</a></li>
-                <li><a href="#facebook-posts">Facebook Posts</a></li> <!-- New Navigation Link -->
+                <li><a href="#facebook-posts">Posts</a></li>
                 <li><a href="#interactive-bible">Interactive Bible</a></li>
+                <li><a href="#map">Find Us</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
             <!-- Hamburger Menu -->
@@ -1195,8 +1127,7 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-        <div class="overlay"></div>
-        <div class="hero-content">
+        <div class="hero-content" data-aos="fade-up">
             <h1>Welcome to Grace Community Church of God</h1>
             <p>Embracing Everyone with the Love of Jesus</p>
             <a href="#about" class="btn">Learn More</a>
@@ -1204,7 +1135,7 @@
     </section>
 
     <!-- Random Verse Generator -->
-    <section id="random-verse" class="random-verse">
+    <section id="random-verse" class="random-verse" data-aos="fade-up">
         <div class="container">
             <h2>Random Bible Verse</h2>
             <div class="random-verse-container">
@@ -1217,7 +1148,7 @@
     </section>
 
     <!-- About Us -->
-    <section id="about" class="about">
+    <section id="about" class="about" data-aos="fade-up">
         <div class="container">
             <h2>About Us</h2>
             <p>At Grace Community Church of God, we believe in fostering a welcoming environment where everyone can grow in their faith and understanding of Jesus' teachings.</p>
@@ -1233,7 +1164,7 @@
     </section>
 
     <!-- Sermons -->
-    <section id="sermons" class="sermons">
+    <section id="sermons" class="sermons" data-aos="fade-up">
         <div class="container">
             <h2>Recent Sermons</h2>
             <div class="sermon-list">
@@ -1243,7 +1174,7 @@
     </section>
 
     <!-- Facebook Posts -->
-    <section id="facebook-posts" class="facebook-posts">
+    <section id="facebook-posts" class="facebook-posts" data-aos="fade-up">
         <div class="container">
             <h2>Latest Facebook Posts</h2>
             <div class="post-list">
@@ -1253,7 +1184,7 @@
     </section>
 
     <!-- Interactive Bible Section -->
-    <section id="interactive-bible" class="interactive-bible">
+    <section id="interactive-bible" class="interactive-bible" data-aos="fade-up">
         <div class="container">
             <h2>Interactive Bible</h2>
             <div class="bible-container">
@@ -1280,7 +1211,7 @@
     </section>
 
     <!-- Fishing for Men Game -->
-    <section id="fishing-game" class="fishing-game">
+    <section id="fishing-game" class="fishing-game" data-aos="fade-up">
         <div class="container">
             <h2>Fishing for Men</h2>
             <div class="game-container">
@@ -1297,7 +1228,7 @@
     </section>
 
     <!-- Contact -->
-    <section id="contact" class="contact">
+    <section id="contact" class="contact" data-aos="fade-up">
         <div class="container">
             <h2>Contact Us</h2>
             <div class="contact-content">
@@ -1322,7 +1253,7 @@
     </section>
 
     <!-- Map Section -->
-    <section id="map" class="map">
+    <section id="map" class="map" data-aos="fade-up">
         <div class="container">
             <h2>Find Us</h2>
             <div id="osm-map"></div>
@@ -1333,7 +1264,7 @@
     <footer>
         <div class="container">
             <div class="footer-top">
-                <img src="https://via.placeholder.com/80" alt="Church Logo" class="footer-logo" loading="lazy">
+                <img src="https://via.placeholder.com/100" alt="Church Logo" class="footer-logo" loading="lazy">
                 <p>&copy; 2024 Grace Community Church of God. All rights reserved.</p>
             </div>
             <div class="social-links">
@@ -1348,12 +1279,24 @@
     <!-- Leaflet.js for Map -->
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-oPnm4QsxXrJzZxl9RgtOXf5K1EvlNlwyqqsFmdlwtE8=" crossorigin=""></script>
 
+    <!-- AOS Library for Scroll Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+    <!-- Swiper.js for Sliders -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
     <!-- Additional Scripts for Enhancements -->
     <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+        });
+
         // Navigation Scroll Change
         window.addEventListener('scroll', () => {
             const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
+            if (window.scrollY > 80) {
                 navbar.classList.add('scrolled');
             } else {
                 navbar.classList.remove('scrolled');
@@ -1368,6 +1311,16 @@
             navLinks.classList.toggle('active');
         });
 
+        // Close navigation when a link is clicked (for mobile)
+        const navLinkItems = document.querySelectorAll('.nav-links a');
+        navLinkItems.forEach(link => {
+            link.addEventListener('click', () => {
+                if (navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
+
         // Interactive Bible Functionality with Bible-API.com
         const bookSelect = document.getElementById('book-select');
         const chapterSelect = document.getElementById('chapter-select');
@@ -1378,338 +1331,74 @@
         // Static Data for Books and Chapters
         const bibleBooks = [
             // Old Testament
-            {
-                name: "Genesis",
-                abbreviation: "Gen",
-                chapters: 50
-            },
-            {
-                name: "Exodus",
-                abbreviation: "Exod",
-                chapters: 40
-            },
-            {
-                name: "Leviticus",
-                abbreviation: "Lev",
-                chapters: 27
-            },
-            {
-                name: "Numbers",
-                abbreviation: "Num",
-                chapters: 36
-            },
-            {
-                name: "Deuteronomy",
-                abbreviation: "Deut",
-                chapters: 34
-            },
-            {
-                name: "Joshua",
-                abbreviation: "Josh",
-                chapters: 24
-            },
-            {
-                name: "Judges",
-                abbreviation: "Judg",
-                chapters: 21
-            },
-            {
-                name: "Ruth",
-                abbreviation: "Ruth",
-                chapters: 4
-            },
-            {
-                name: "1 Samuel",
-                abbreviation: "1 Sam",
-                chapters: 31
-            },
-            {
-                name: "2 Samuel",
-                abbreviation: "2 Sam",
-                chapters: 24
-            },
-            {
-                name: "1 Kings",
-                abbreviation: "1 Kings",
-                chapters: 22
-            },
-            {
-                name: "2 Kings",
-                abbreviation: "2 Kings",
-                chapters: 25
-            },
-            {
-                name: "1 Chronicles",
-                abbreviation: "1 Chron",
-                chapters: 29
-            },
-            {
-                name: "2 Chronicles",
-                abbreviation: "2 Chron",
-                chapters: 36
-            },
-            {
-                name: "Ezra",
-                abbreviation: "Ezra",
-                chapters: 10
-            },
-            {
-                name: "Nehemiah",
-                abbreviation: "Neh",
-                chapters: 13
-            },
-            {
-                name: "Esther",
-                abbreviation: "Esth",
-                chapters: 10
-            },
-            {
-                name: "Job",
-                abbreviation: "Job",
-                chapters: 42
-            },
-            {
-                name: "Psalms",
-                abbreviation: "Ps",
-                chapters: 150
-            },
-            {
-                name: "Proverbs",
-                abbreviation: "Prov",
-                chapters: 31
-            },
-            {
-                name: "Ecclesiastes",
-                abbreviation: "Eccl",
-                chapters: 12
-            },
-            {
-                name: "Song of Solomon",
-                abbreviation: "Song",
-                chapters: 8
-            },
-            {
-                name: "Isaiah",
-                abbreviation: "Isa",
-                chapters: 66
-            },
-            {
-                name: "Jeremiah",
-                abbreviation: "Jer",
-                chapters: 52
-            },
-            {
-                name: "Lamentations",
-                abbreviation: "Lam",
-                chapters: 5
-            },
-            {
-                name: "Ezekiel",
-                abbreviation: "Ezek",
-                chapters: 48
-            },
-            {
-                name: "Daniel",
-                abbreviation: "Dan",
-                chapters: 12
-            },
-            {
-                name: "Hosea",
-                abbreviation: "Hos",
-                chapters: 14
-            },
-            {
-                name: "Joel",
-                abbreviation: "Joel",
-                chapters: 3
-            },
-            {
-                name: "Amos",
-                abbreviation: "Amos",
-                chapters: 9
-            },
-            {
-                name: "Obadiah",
-                abbreviation: "Obad",
-                chapters: 1
-            },
-            {
-                name: "Jonah",
-                abbreviation: "Jonah",
-                chapters: 4
-            },
-            {
-                name: "Micah",
-                abbreviation: "Mic",
-                chapters: 7
-            },
-            {
-                name: "Nahum",
-                abbreviation: "Nah",
-                chapters: 3
-            },
-            {
-                name: "Habakkuk",
-                abbreviation: "Hab",
-                chapters: 3
-            },
-            {
-                name: "Zephaniah",
-                abbreviation: "Zeph",
-                chapters: 3
-            },
-            {
-                name: "Haggai",
-                abbreviation: "Hag",
-                chapters: 2
-            },
-            {
-                name: "Zechariah",
-                abbreviation: "Zech",
-                chapters: 14
-            },
-            {
-                name: "Malachi",
-                abbreviation: "Mal",
-                chapters: 4
-            },
+            { name: "Genesis", abbreviation: "Gen", chapters: 50 },
+            { name: "Exodus", abbreviation: "Exod", chapters: 40 },
+            { name: "Leviticus", abbreviation: "Lev", chapters: 27 },
+            { name: "Numbers", abbreviation: "Num", chapters: 36 },
+            { name: "Deuteronomy", abbreviation: "Deut", chapters: 34 },
+            { name: "Joshua", abbreviation: "Josh", chapters: 24 },
+            { name: "Judges", abbreviation: "Judg", chapters: 21 },
+            { name: "Ruth", abbreviation: "Ruth", chapters: 4 },
+            { name: "1 Samuel", abbreviation: "1 Sam", chapters: 31 },
+            { name: "2 Samuel", abbreviation: "2 Sam", chapters: 24 },
+            { name: "1 Kings", abbreviation: "1 Kings", chapters: 22 },
+            { name: "2 Kings", abbreviation: "2 Kings", chapters: 25 },
+            { name: "1 Chronicles", abbreviation: "1 Chron", chapters: 29 },
+            { name: "2 Chronicles", abbreviation: "2 Chron", chapters: 36 },
+            { name: "Ezra", abbreviation: "Ezra", chapters: 10 },
+            { name: "Nehemiah", abbreviation: "Neh", chapters: 13 },
+            { name: "Esther", abbreviation: "Esth", chapters: 10 },
+            { name: "Job", abbreviation: "Job", chapters: 42 },
+            { name: "Psalms", abbreviation: "Ps", chapters: 150 },
+            { name: "Proverbs", abbreviation: "Prov", chapters: 31 },
+            { name: "Ecclesiastes", abbreviation: "Eccl", chapters: 12 },
+            { name: "Song of Solomon", abbreviation: "Song", chapters: 8 },
+            { name: "Isaiah", abbreviation: "Isa", chapters: 66 },
+            { name: "Jeremiah", abbreviation: "Jer", chapters: 52 },
+            { name: "Lamentations", abbreviation: "Lam", chapters: 5 },
+            { name: "Ezekiel", abbreviation: "Ezek", chapters: 48 },
+            { name: "Daniel", abbreviation: "Dan", chapters: 12 },
+            { name: "Hosea", abbreviation: "Hos", chapters: 14 },
+            { name: "Joel", abbreviation: "Joel", chapters: 3 },
+            { name: "Amos", abbreviation: "Amos", chapters: 9 },
+            { name: "Obadiah", abbreviation: "Obad", chapters: 1 },
+            { name: "Jonah", abbreviation: "Jonah", chapters: 4 },
+            { name: "Micah", abbreviation: "Mic", chapters: 7 },
+            { name: "Nahum", abbreviation: "Nah", chapters: 3 },
+            { name: "Habakkuk", abbreviation: "Hab", chapters: 3 },
+            { name: "Zephaniah", abbreviation: "Zeph", chapters: 3 },
+            { name: "Haggai", abbreviation: "Hag", chapters: 2 },
+            { name: "Zechariah", abbreviation: "Zech", chapters: 14 },
+            { name: "Malachi", abbreviation: "Mal", chapters: 4 },
 
             // New Testament
-            {
-                name: "Matthew",
-                abbreviation: "Matt",
-                chapters: 28
-            },
-            {
-                name: "Mark",
-                abbreviation: "Mark",
-                chapters: 16
-            },
-            {
-                name: "Luke",
-                abbreviation: "Luke",
-                chapters: 24
-            },
-            {
-                name: "John",
-                abbreviation: "John",
-                chapters: 21
-            },
-            {
-                name: "Acts",
-                abbreviation: "Acts",
-                chapters: 28
-            },
-            {
-                name: "Romans",
-                abbreviation: "Rom",
-                chapters: 16
-            },
-            {
-                name: "1 Corinthians",
-                abbreviation: "1 Cor",
-                chapters: 16
-            },
-            {
-                name: "2 Corinthians",
-                abbreviation: "2 Cor",
-                chapters: 13
-            },
-            {
-                name: "Galatians",
-                abbreviation: "Gal",
-                chapters: 6
-            },
-            {
-                name: "Ephesians",
-                abbreviation: "Eph",
-                chapters: 6
-            },
-            {
-                name: "Philippians",
-                abbreviation: "Phil",
-                chapters: 4
-            },
-            {
-                name: "Colossians",
-                abbreviation: "Col",
-                chapters: 4
-            },
-            {
-                name: "1 Thessalonians",
-                abbreviation: "1 Thess",
-                chapters: 5
-            },
-            {
-                name: "2 Thessalonians",
-                abbreviation: "2 Thess",
-                chapters: 3
-            },
-            {
-                name: "1 Timothy",
-                abbreviation: "1 Tim",
-                chapters: 6
-            },
-            {
-                name: "2 Timothy",
-                abbreviation: "2 Tim",
-                chapters: 4
-            },
-            {
-                name: "Titus",
-                abbreviation: "Titus",
-                chapters: 3
-            },
-            {
-                name: "Philemon",
-                abbreviation: "Philem",
-                chapters: 1
-            },
-            {
-                name: "Hebrews",
-                abbreviation: "Heb",
-                chapters: 13
-            },
-            {
-                name: "James",
-                abbreviation: "James",
-                chapters: 5
-            },
-            {
-                name: "1 Peter",
-                abbreviation: "1 Pet",
-                chapters: 5
-            },
-            {
-                name: "2 Peter",
-                abbreviation: "2 Pet",
-                chapters: 3
-            },
-            {
-                name: "1 John",
-                abbreviation: "1 John",
-                chapters: 5
-            },
-            {
-                name: "2 John",
-                abbreviation: "2 John",
-                chapters: 1
-            },
-            {
-                name: "3 John",
-                abbreviation: "3 John",
-                chapters: 1
-            },
-            {
-                name: "Jude",
-                abbreviation: "Jude",
-                chapters: 1
-            },
-            {
-                name: "Revelation",
-                abbreviation: "Rev",
-                chapters: 22
-            }
+            { name: "Matthew", abbreviation: "Matt", chapters: 28 },
+            { name: "Mark", abbreviation: "Mark", chapters: 16 },
+            { name: "Luke", abbreviation: "Luke", chapters: 24 },
+            { name: "John", abbreviation: "John", chapters: 21 },
+            { name: "Acts", abbreviation: "Acts", chapters: 28 },
+            { name: "Romans", abbreviation: "Rom", chapters: 16 },
+            { name: "1 Corinthians", abbreviation: "1 Cor", chapters: 16 },
+            { name: "2 Corinthians", abbreviation: "2 Cor", chapters: 13 },
+            { name: "Galatians", abbreviation: "Gal", chapters: 6 },
+            { name: "Ephesians", abbreviation: "Eph", chapters: 6 },
+            { name: "Philippians", abbreviation: "Phil", chapters: 4 },
+            { name: "Colossians", abbreviation: "Col", chapters: 4 },
+            { name: "1 Thessalonians", abbreviation: "1 Thess", chapters: 5 },
+            { name: "2 Thessalonians", abbreviation: "2 Thess", chapters: 3 },
+            { name: "1 Timothy", abbreviation: "1 Tim", chapters: 6 },
+            { name: "2 Timothy", abbreviation: "2 Tim", chapters: 4 },
+            { name: "Titus", abbreviation: "Titus", chapters: 3 },
+            { name: "Philemon", abbreviation: "Philem", chapters: 1 },
+            { name: "Hebrews", abbreviation: "Heb", chapters: 13 },
+            { name: "James", abbreviation: "James", chapters: 5 },
+            { name: "1 Peter", abbreviation: "1 Pet", chapters: 5 },
+            { name: "2 Peter", abbreviation: "2 Pet", chapters: 3 },
+            { name: "1 John", abbreviation: "1 John", chapters: 5 },
+            { name: "2 John", abbreviation: "2 John", chapters: 1 },
+            { name: "3 John", abbreviation: "3 John", chapters: 1 },
+            { name: "Jude", abbreviation: "Jude", chapters: 1 },
+            { name: "Revelation", abbreviation: "Rev", chapters: 22 }
         ];
 
         // Populate Books Dropdown
@@ -1880,6 +1569,13 @@
         let fishing = false;
         const fishArray = [];
         const fishCount = 5;
+        let fishingSound, catchSound;
+
+        // Preload Sounds
+        function preloadSounds() {
+            fishingSound = new Audio('https://www.soundjay.com/buttons/sounds/button-16.mp3'); // Example sound URL
+            catchSound = new Audio('https://www.soundjay.com/buttons/sounds/button-09.mp3'); // Example sound URL
+        }
 
         // Fish Class
         class Fish {
@@ -1892,7 +1588,7 @@
             }
 
             draw() {
-                ctx.fillStyle = '#e74c3c';
+                ctx.fillStyle = '#1abc9c';
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size / 2, 0, Math.PI * 2);
                 ctx.fill();
@@ -1941,6 +1637,8 @@
                 gameStatus.textContent = `Score: ${score}`;
                 initFish();
                 animateFish();
+                fishingSound.loop = true;
+                fishingSound.play();
             }
         });
 
@@ -1951,6 +1649,8 @@
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             score = 0;
             gameStatus.textContent = `Score: ${score}`;
+            fishingSound.pause();
+            fishingSound.currentTime = 0;
         });
 
         // Click Event to "Catch" Fish
@@ -1965,11 +1665,15 @@
                         fishArray.splice(index, 1);
                         score += 1;
                         gameStatus.textContent = `Score: ${score}`;
+                        catchSound.play();
                         // Remove the fish
                         if (fishArray.length === 0) {
                             fishing = false;
                             cancelAnimationFrame(animationId);
                             gameStatus.textContent = `Final Score: ${score}`;
+                            fishingSound.pause();
+                            fishingSound.currentTime = 0;
+                            alert(`Game Over! Your Score: ${score}`);
                         }
                     }
                 });
@@ -1982,7 +1686,7 @@
             const map = L.map("osm-map").setView(churchLocation, 15);
 
             L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
             }).addTo(map);
 
             L.marker(churchLocation)
@@ -2075,6 +1779,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             loadFacebookPosts();
             loadSermons();
+            preloadSounds();
         });
 
         // Form Submission (Placeholder)
@@ -2085,6 +1790,67 @@
             // Here you can add form submission logic, e.g., using AJAX or integrating with a service
             alert('Thank you for contacting us! We will get back to you shortly.');
             contactForm.reset();
+        });
+
+        // Initialize Swiper for Sermons Carousel
+        document.addEventListener('DOMContentLoaded', () => {
+            const sermonSwiper = new Swiper('.sermon-list', {
+                slidesPerView: 3,
+                spaceBetween: 30,
+                loop: true,
+                autoplay: {
+                    delay: 5000,
+                    disableOnInteraction: false,
+                },
+                pagination: {
+                    el: '.sermons .swiper-pagination',
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: '.sermons .swiper-button-next',
+                    prevEl: '.sermons .swiper-button-prev',
+                },
+                breakpoints: {
+                    1024: {
+                        slidesPerView: 3,
+                    },
+                    768: {
+                        slidesPerView: 2,
+                    },
+                    640: {
+                        slidesPerView: 1,
+                    }
+                }
+            });
+
+            const postSwiper = new Swiper('.post-list', {
+                slidesPerView: 3,
+                spaceBetween: 30,
+                loop: true,
+                autoplay: {
+                    delay: 6000,
+                    disableOnInteraction: false,
+                },
+                pagination: {
+                    el: '.facebook-posts .swiper-pagination',
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: '.facebook-posts .swiper-button-next',
+                    prevEl: '.facebook-posts .swiper-button-prev',
+                },
+                breakpoints: {
+                    1024: {
+                        slidesPerView: 3,
+                    },
+                    768: {
+                        slidesPerView: 2,
+                    },
+                    640: {
+                        slidesPerView: 1,
+                    }
+                }
+            });
         });
     </script>
 </body>
