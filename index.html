@@ -486,6 +486,13 @@
             transform: scale(1.05);
         }
 
+.fb-container {
+    max-width: 600px; /* Maximum widget width */
+    width: 90%;       /* Flexible width for responsiveness */
+    margin: 20px auto; /* Center and space from surrounding elements */
+    overflow: hidden;  /* Prevents overflow on smaller screens */
+}
+        
         /* Interactive Bible Section */
         .interactive-bible {
             background: #fff;
@@ -1133,7 +1140,17 @@
     <!-- Events -->
     <section id="events" class="events">
         <div class="container">
-<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FGraceCommunityHazlehurst&tabs=timeline&width=500&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="100%" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+
+<div class="fb-container">
+    <div class="fb-page" data-href="https://www.facebook.com/GraceCommunityHazlehurst"
+         data-tabs="timeline"
+         data-adapt-container-width="true"
+         data-small-header="true"
+         data-hide-cover="false"
+         data-show-facepile="true">
+    </div>
+</div>
+            
         </div>
     </section>
     <!-- Random Verse Generator -->
