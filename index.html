@@ -1605,25 +1605,7 @@
         });
 
         // Initialize Javatari Emulator
-        document.addEventListener('DOMContentLoaded', function() {
-            const cartridgePath = 'RedSeaCrossing.a26'; // 🔗 **Ensure this path is correct relative to your HTML file or use an absolute URL**
 
-            // Create a new Javatari instance
-            const javatari = new Javatari({
-                canvas: document.getElementById('javatari-screen'),
-                rom: cartridgePath, // Provide the URL directly
-                sound: true,        // Enable sound
-                autoStart: true,    // Start the game automatically
-                scale: 2,            // Scale the emulator for better visibility
-                // Additional settings can be added here
-            });
-
-            // Handle emulator errors
-            javatari.on('error', function(error) {
-                console.error('Javatari Error:', error);
-                const javatariContainer = document.querySelector('.javatari-container');
-                javatariContainer.innerHTML += '<p style="color: red; margin-top: 1rem;">Failed to load the game. Please try again later.</p>';
-            });
         });
     </script>
 </body>
