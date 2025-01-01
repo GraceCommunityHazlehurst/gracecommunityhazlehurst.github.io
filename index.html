@@ -1214,16 +1214,11 @@
     <section id="fishing-game" class="fishing-game" data-aos="fade-up">
         <div class="container">
             <h2>Fishing for Men</h2>
-            <div class="game-container">
-                <canvas id="gameCanvas" width="800" height="400"></canvas>
-                <div class="game-controls">
-                    <button id="start-game-btn">Start Game</button>
-                    <button id="reset-game-btn">Reset Game</button>
-                </div>
-                <div class="game-status" id="game-status">
-                    Score: 0
-                </div>
-            </div>
+        <div id="javatari" style="text-align: center; margin: 20px auto 0; padding: 0 10px;">
+            <div id="javatari-screen" style="box-shadow: 2px 2px 10px rgba(0, 0, 0, .7);"></div>
+        </div>
+
+        <script src="javatari.js"></script>
         </div>
     </section>
 
@@ -1853,5 +1848,37 @@
             });
         });
     </script>
+
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Path to your .a26 cartridge
+            const cartridgePath = 'RedSeaCrossing.a26';
+
+            // Function to fetch the cartridge file
+            fetch(cartridgePath)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Network response was not ok: ${response.statusText}`);
+                    }
+                    return response.arrayBuffer();
+                })
+                .then(data => {
+                    // Initialize Javatari with the fetched ROM data
+                    if (typeof Javatari !== 'undefined') {
+                        // Assuming Javatari has an initialization method
+                        Javatari.initialize({
+                            element: document.getElementById('javatari-screen'),
+                            rom: data
+                        });
+                    } else {
+                        console.error('Javatari is not loaded properly.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error loading the cartridge:', error);
+                });
+        });
+    </script>
+    
 </body>
 </html>
