@@ -24,6 +24,11 @@
     <!-- Swiper.js for Sliders -->
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 
+    <!-- Javatari Emulator CSS (if any) -->
+    <style>
+        /* Add any additional styles for Javatari here if needed */
+    </style>
+
     <!-- Your CSS file -->
     <link rel="stylesheet" href="styles.css">
 
@@ -612,103 +617,6 @@
             color: var(--accent-color);
         }
 
-        /* Random Verse Generator */
-        .random-verse {
-            background: var(--background-color);
-            padding: 5rem 0;
-            animation: fadeInUp 1s ease-out;
-        }
-
-        .random-verse h2 {
-            text-align: center;
-            font-size: 2.8rem;
-            margin-bottom: 2rem;
-            color: var(--primary-color);
-            position: relative;
-            font-weight: 700;
-        }
-
-        .random-verse h2::after {
-            content: '';
-            width: 60px;
-            height: 4px;
-            background: var(--accent-color);
-            display: block;
-            margin: 15px auto 0;
-            border-radius: var(--border-radius);
-        }
-
-        .random-verse-container {
-            max-width: 900px;
-            margin: 0 auto;
-            text-align: center;
-            padding: 2rem;
-            border: 2px solid var(--accent-color);
-            border-radius: var(--border-radius);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-            background: var(--light-color);
-            transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
-        }
-
-        .random-verse-container:hover {
-            transform: scale(1.02);
-            box-shadow: 0 12px 35px rgba(0,0,0,0.15);
-        }
-
-        .random-verse .verse-text {
-            background: #f9f9f9;
-            padding: 2rem;
-            border-radius: var(--border-radius);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.05);
-            font-size: 1.2rem;
-            color: var(--text-color);
-            min-height: 120px;
-            position: relative;
-            margin-bottom: 1.5rem;
-            transition: all var(--transition-speed) ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-        }
-
-        .random-verse .verse-text::before {
-            content: open-quote;
-            font-size: 3rem;
-            position: absolute;
-            top: -20px;
-            left: -10px;
-            color: var(--accent-color);
-        }
-
-        .random-verse .verse-text::after {
-            content: close-quote;
-            font-size: 3rem;
-            position: absolute;
-            bottom: -20px;
-            right: -10px;
-            color: var(--accent-color);
-        }
-
-        .random-verse .generate-btn {
-            background: var(--accent-color);
-            color: #fff;
-            padding: 0.8rem 2rem;
-            border: none;
-            border-radius: var(--border-radius);
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background var(--transition-speed) ease, transform var(--transition-speed) ease;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-        }
-
-        .random-verse .generate-btn:hover {
-            background: #ff8566;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-        }
-
         /* Fishing for Men Game Section */
         .fishing-game {
             background: #fff;
@@ -736,59 +644,30 @@
             border-radius: var(--border-radius);
         }
 
-        .game-container {
-            max-width: 900px;
+        /* Container for Javatari */
+        .javatari-container {
+            max-width: 800px;
             margin: 0 auto;
             text-align: center;
-            position: relative;
-        }
-
-        /* Canvas for Game */
-        #gameCanvas {
-            border: 3px solid var(--accent-color);
+            padding: 1rem;
+            border: 2px solid var(--accent-color);
             border-radius: var(--border-radius);
-            background: #e0f7fa;
             box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            background: var(--light-color);
             transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
         }
 
-        #gameCanvas:hover {
+        .javatari-container:hover {
             transform: scale(1.02);
             box-shadow: 0 12px 35px rgba(0,0,0,0.15);
         }
 
-        .game-controls {
-            margin-top: 1.5rem;
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .game-controls button {
-            background: var(--accent-color);
-            color: #fff;
-            padding: 0.8rem 2rem;
-            border: none;
+        #javatari-screen {
+            width: 100%;
+            height: 600px;
+            background-color: #000;
             border-radius: var(--border-radius);
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background var(--transition-speed) ease, transform var(--transition-speed) ease;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-        }
-
-        .game-controls button:hover {
-            background: #ff8566;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-        }
-
-        .game-status {
-            margin-top: 1.5rem;
-            font-size: 1.3rem;
-            color: var(--primary-color);
-            font-weight: 600;
+            overflow: hidden;
         }
 
         /* Map Section */
@@ -1029,11 +908,11 @@
                 left: 0;
             }
 
-            .game-container {
+            .javatari-container {
                 width: 100%;
             }
 
-            #gameCanvas {
+            #javatari-screen {
                 width: 100%;
                 height: auto;
             }
@@ -1097,6 +976,10 @@
             .game-status {
                 font-size: 1rem;
             }
+
+            #javatari-screen {
+                height: 400px;
+            }
         }
     </style>
 </head>
@@ -1115,6 +998,7 @@
                 <li><a href="#sermons">Sermons</a></li>
                 <li><a href="#facebook-posts">Posts</a></li>
                 <li><a href="#interactive-bible">Interactive Bible</a></li>
+                <li><a href="#fishing-game">Fishing Game</a></li>
                 <li><a href="#map">Find Us</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -1214,11 +1098,11 @@
     <section id="fishing-game" class="fishing-game" data-aos="fade-up">
         <div class="container">
             <h2>Fishing for Men</h2>
-        <div id="javatari" style="text-align: center; margin: 20px auto 0; padding: 0 10px;">
-            <div id="javatari-screen" style="box-shadow: 2px 2px 10px rgba(0, 0, 0, .7);"></div>
-        </div>
-
-        <script src="javatari.js"></script>
+            <div class="javatari-container">
+                <div id="javatari-screen">
+                    <!-- Javatari Emulator will render here -->
+                </div>
+            </div>
         </div>
     </section>
 
@@ -1279,6 +1163,9 @@
 
     <!-- Swiper.js for Sliders -->
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Javatari Emulator via CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/javatari@1.0.0/dist/javatari.min.js"></script>
 
     <!-- Additional Scripts for Enhancements -->
     <script>
@@ -1552,129 +1439,6 @@
 
         generateVerseBtn.addEventListener('click', fetchRandomVerse);
 
-        // Fishing for Men Game Functionality
-        const canvas = document.getElementById('gameCanvas');
-        const ctx = canvas.getContext('2d');
-        const startGameBtn = document.getElementById('start-game-btn');
-        const resetGameBtn = document.getElementById('reset-game-btn');
-        const gameStatus = document.getElementById('game-status');
-
-        let animationId;
-        let score = 0;
-        let fishing = false;
-        const fishArray = [];
-        const fishCount = 5;
-        let fishingSound, catchSound;
-
-        // Preload Sounds
-        function preloadSounds() {
-            fishingSound = new Audio('https://www.soundjay.com/buttons/sounds/button-16.mp3'); // Example sound URL
-            catchSound = new Audio('https://www.soundjay.com/buttons/sounds/button-09.mp3'); // Example sound URL
-        }
-
-        // Fish Class
-        class Fish {
-            constructor(x, y, speed, direction) {
-                this.x = x;
-                this.y = y;
-                this.speed = speed;
-                this.direction = direction; // 1 for right, -1 for left
-                this.size = 40;
-            }
-
-            draw() {
-                ctx.fillStyle = '#1abc9c';
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size / 2, 0, Math.PI * 2);
-                ctx.fill();
-                // Draw eye
-                ctx.fillStyle = '#fff';
-                ctx.beginPath();
-                ctx.arc(this.x + this.direction * 10, this.y - 10, 5, 0, Math.PI * 2);
-                ctx.fill();
-            }
-
-            update() {
-                this.x += this.speed * this.direction;
-                // Reverse direction if hitting canvas edges
-                if (this.x > canvas.width - this.size || this.x < this.size) {
-                    this.direction *= -1;
-                }
-                this.draw();
-            }
-        }
-
-        // Initialize Fish
-        function initFish() {
-            fishArray.length = 0;
-            for (let i = 0; i < fishCount; i++) {
-                const size = 40;
-                const x = Math.random() * (canvas.width - size * 2) + size;
-                const y = Math.random() * (canvas.height - size * 2) + size;
-                const speed = Math.random() * 2 + 1;
-                const direction = Math.random() < 0.5 ? -1 : 1;
-                fishArray.push(new Fish(x, y, speed, direction));
-            }
-        }
-
-        // Animate Fish
-        function animateFish() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            fishArray.forEach(fish => fish.update());
-            animationId = requestAnimationFrame(animateFish);
-        }
-
-        // Start Game
-        startGameBtn.addEventListener('click', () => {
-            if (!fishing) {
-                fishing = true;
-                score = 0;
-                gameStatus.textContent = `Score: ${score}`;
-                initFish();
-                animateFish();
-                fishingSound.loop = true;
-                fishingSound.play();
-            }
-        });
-
-        // Reset Game
-        resetGameBtn.addEventListener('click', () => {
-            fishing = false;
-            cancelAnimationFrame(animationId);
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            score = 0;
-            gameStatus.textContent = `Score: ${score}`;
-            fishingSound.pause();
-            fishingSound.currentTime = 0;
-        });
-
-        // Click Event to "Catch" Fish
-        canvas.addEventListener('click', (e) => {
-            if (fishing) {
-                const rect = canvas.getBoundingClientRect();
-                const clickX = e.clientX - rect.left;
-                const clickY = e.clientY - rect.top;
-                fishArray.forEach((fish, index) => {
-                    const distance = Math.hypot(fish.x - clickX, fish.y - clickY);
-                    if (distance < fish.size / 2) {
-                        fishArray.splice(index, 1);
-                        score += 1;
-                        gameStatus.textContent = `Score: ${score}`;
-                        catchSound.play();
-                        // Remove the fish
-                        if (fishArray.length === 0) {
-                            fishing = false;
-                            cancelAnimationFrame(animationId);
-                            gameStatus.textContent = `Final Score: ${score}`;
-                            fishingSound.pause();
-                            fishingSound.currentTime = 0;
-                            alert(`Game Over! Your Score: ${score}`);
-                        }
-                    }
-                });
-            }
-        });
-
         // Initialize Map with Leaflet.js
         document.addEventListener("DOMContentLoaded", function () {
             const churchLocation = [31.8693, -82.5950]; // Coordinates for 118 W Jefferson St, Hazlehurst, GA
@@ -1774,7 +1538,6 @@
         document.addEventListener('DOMContentLoaded', () => {
             loadFacebookPosts();
             loadSermons();
-            preloadSounds();
         });
 
         // Form Submission (Placeholder)
@@ -1847,14 +1610,13 @@
                 }
             });
         });
-    </script>
 
-        <script>
+        // Initialize Javatari Emulator
         document.addEventListener('DOMContentLoaded', function() {
             // Path to your .a26 cartridge
-            const cartridgePath = 'RedSeaCrossing.a26';
+            const cartridgePath = 'RedSeaCrossing.a26'; // Ensure this path is correct relative to your HTML file
 
-            // Function to fetch the cartridge file
+            // Fetch the cartridge file
             fetch(cartridgePath)
                 .then(response => {
                     if (!response.ok) {
@@ -1865,20 +1627,44 @@
                 .then(data => {
                     // Initialize Javatari with the fetched ROM data
                     if (typeof Javatari !== 'undefined') {
-                        // Assuming Javatari has an initialization method
-                        Javatari.initialize({
+                        Javatari.init({
                             element: document.getElementById('javatari-screen'),
-                            rom: data
+                            rom: data,
+                            sound: true, // Enable sound
+                            autoStart: true, // Start the game automatically
+                            scale: 2, // Scale the emulator for better visibility
+                            // Additional settings can be added here
                         });
                     } else {
                         console.error('Javatari is not loaded properly.');
+                        const javatariScreen = document.getElementById('javatari-screen');
+                        javatariScreen.innerHTML = '<p style="color: red;">Failed to load the game. Please try again later.</p>';
                     }
                 })
                 .catch(error => {
                     console.error('Error loading the cartridge:', error);
+                    const javatariScreen = document.getElementById('javatari-screen');
+                    javatariScreen.innerHTML = '<p style="color: red;">Failed to load the game. Please try again later.</p>';
                 });
         });
     </script>
-    
+
+    <!-- Initialize Leaflet.js Map -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const churchLocation = [31.8693, -82.5950]; // Coordinates for 118 W Jefferson St, Hazlehurst, GA
+            const map = L.map("osm-map").setView(churchLocation, 15);
+
+            L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+            }).addTo(map);
+
+            L.marker(churchLocation)
+                .addTo(map)
+                .bindPopup("Grace Community Church of God")
+                .openPopup();
+        });
+    </script>
+
 </body>
 </html>
