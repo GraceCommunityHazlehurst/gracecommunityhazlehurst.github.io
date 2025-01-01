@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Meta Tags and Title -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grace Community Church of God</title>
@@ -16,7 +17,7 @@
           integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
           crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <!-- Leaflet.js for Maps -->
+    <!-- Leaflet.js CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"/>
 
     <!-- AOS Library for Scroll Animations -->
@@ -25,9 +26,6 @@
     <!-- Swiper.js for Sliders -->
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 
-        <script src="javatari.js"></script>
-
-    
     <!-- Additional CSS for Enhancements -->
     <style>
         /* CSS Variables for Theme Colors */
@@ -1156,6 +1154,9 @@
     <!-- Swiper.js for Sliders -->
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
+    <!-- Leaflet.js JavaScript -->
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+
     <!-- Javatari Emulator via CDN -->
     <script src="https://cdn.jsdelivr.net/npm/javatari@1.0.0/dist/javatari.min.js"></script>
 
@@ -1449,7 +1450,7 @@
         // Fetch and Display Sermons from Firebase Cloud Functions
         async function loadSermons() {
             try {
-                const response = await fetch('https://us-central1-your-project-id.cloudfunctions.net/getSermonVideos'); // Replace with your actual Firebase Cloud Function URL
+                const response = await fetch('https://us-central1-your-project-id.cloudfunctions.net/getSermonVideos'); // 🔗 **Replace with your actual Firebase Cloud Function URL**
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
@@ -1486,7 +1487,7 @@
         // Fetch and Display Facebook Posts from Firebase Cloud Functions
         async function loadFacebookPosts() {
             try {
-                const response = await fetch('https://us-central1-your-project-id.cloudfunctions.net/getFacebookPosts'); // Replace with your actual Firebase Cloud Function URL
+                const response = await fetch('https://us-central1-your-project-id.cloudfunctions.net/getFacebookPosts'); // 🔗 **Replace with your actual Firebase Cloud Function URL**
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
@@ -1537,7 +1538,7 @@
 
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            // Here you can add form submission logic, e.g., using AJAX or integrating with a service
+            // 🔗 **Add your form submission logic here**, e.g., using AJAX or integrating with a service like Formspree or Firebase
             alert('Thank you for contacting us! We will get back to you shortly.');
             contactForm.reset();
         });
@@ -1605,7 +1606,7 @@
 
         // Initialize Javatari Emulator
         document.addEventListener('DOMContentLoaded', function() {
-            const cartridgePath = 'RedSeaCrossing.a26'; // Ensure this path is correct relative to your HTML file
+            const cartridgePath = 'RedSeaCrossing.a26'; // 🔗 **Ensure this path is correct relative to your HTML file or use an absolute URL**
 
             // Create a new Javatari instance
             const javatari = new Javatari({
@@ -1623,23 +1624,6 @@
                 const javatariContainer = document.querySelector('.javatari-container');
                 javatariContainer.innerHTML += '<p style="color: red; margin-top: 1rem;">Failed to load the game. Please try again later.</p>';
             });
-        });
-    </script>
-
-    <!-- Initialize Leaflet.js Map -->
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const churchLocation = [31.8693, -82.5950]; // Coordinates for 118 W Jefferson St, Hazlehurst, GA
-            const map = L.map("osm-map").setView(churchLocation, 15);
-
-            L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
-            }).addTo(map);
-
-            L.marker(churchLocation)
-                .addTo(map)
-                .bindPopup("Grace Community Church of God")
-                .openPopup();
         });
     </script>
 </body>
