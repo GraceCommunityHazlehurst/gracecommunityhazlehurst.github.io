@@ -57,7 +57,7 @@ Javatari = {
 
 };
 
-Javatari.PRESETS_CONFIG = { };                                  // No built-in Presets for now
+Javatari = { };                                  // No built-in Presets for now
 
 jt = window.jt || {};                                           // Namespace for all classes and objects
 
