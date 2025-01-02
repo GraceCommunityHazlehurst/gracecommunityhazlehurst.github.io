@@ -21,7 +21,7 @@ Javatari = {
     NETPLAY_NICK:                   "",                         // NetPlay! Nickname
 
     // General configuration
-    AUTO_START:                     true,
+    AUTO_START:                     false,
     AUTO_POWER_ON_DELAY:            -1,                       // -1: no auto Power-ON; >= 0: wait specified milliseconds before Power-ON
     CARTRIDGE_SHOW_RECENT:          true,
     CARTRIDGE_CHANGE_DISABLED:      false,
