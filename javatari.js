@@ -23,8 +23,8 @@ Javatari = {
     // General configuration
     AUTO_START:                     true,
     AUTO_POWER_ON_DELAY:            1200,                       // -1: no auto Power-ON; >= 0: wait specified milliseconds before Power-ON
-    CARTRIDGE_SHOW_RECENT:          false,
-    CARTRIDGE_CHANGE_DISABLED:      true,
+    CARTRIDGE_SHOW_RECENT:          true,
+    CARTRIDGE_CHANGE_DISABLED:      false,
     CARTRIDGE_LABEL_COLORS:         "",                         // Space-separated colors for Label, Background, Border. e.g. "#f00 #000 transparent". Leave "" for defaults
     SCREEN_RESIZE_DISABLED:         false,
     SCREEN_CONSOLE_PANEL_DISABLED:  false,
@@ -53,11 +53,11 @@ Javatari = {
     SERVER_KEEPALIVE:               0,
 
     RESET:                          0,                          // if value = 1 clear all saved data on the client
-    ALLOW_URL_PARAMETERS:           false                        // Allows user to override any of these parameters via URL query parameters
+    ALLOW_URL_PARAMETERS:           true                        // Allows user to override any of these parameters via URL query parameters
 
 };
 
-Javatari = { };                                  // No built-in Presets for now
+Javatari.PRESETS_CONFIG = { };                                  // No built-in Presets for now
 
 jt = window.jt || {};                                           // Namespace for all classes and objects
 
