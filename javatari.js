@@ -21,8 +21,8 @@ Javatari = {
     NETPLAY_NICK:                   "",                         // NetPlay! Nickname
 
     // General configuration
-    AUTO_START:                     true,
-    AUTO_POWER_ON_DELAY:            1200,                       // -1: no auto Power-ON; >= 0: wait specified milliseconds before Power-ON
+    AUTO_START:                     false,
+    AUTO_POWER_ON_DELAY:            -1,                       // -1: no auto Power-ON; >= 0: wait specified milliseconds before Power-ON
     CARTRIDGE_SHOW_RECENT:          false,
     CARTRIDGE_CHANGE_DISABLED:      true,
     CARTRIDGE_LABEL_COLORS:         "",                         // Space-separated colors for Label, Background, Border. e.g. "#f00 #000 transparent". Leave "" for defaults
