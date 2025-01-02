@@ -1606,8 +1606,54 @@
             });
         });
 
-        // Initialize Javatari Emulator
+// Fetch and Display Facebook Posts
+async function fetchFacebookPosts() {
+    const pageId = 'Psphjg8iqe4rh'; // Replace with your PAGE_ID
+    const accessToken = 'EAAOp3LDeZCmABO7bZBLgoFtiPZCT68SmH9qyIAZBbPs88ZApckKu9ZBUM4pZA4j4dvZChIGs7kG29XFO9BND1FBe1IlUpLZA2UOgBtjA7n1ehP1Rdu2TENpSKqkxTb084Ysrbfwguq4DoFKDLj2VbX9fYndq6OnWP0VP8l2SsMTisPbUtVi2aI8ZBltdTgt76ZBsLNRktbJzTLy6EtB5cb515ZBOFVObadEAaWwohckOUqVWKdeZCGLefNKl3OXL7e8EZD';
 
+    try {
+        const response = await fetch(
+            `https://graph.facebook.com/v12.0/${pageId}/posts?fields=message,full_picture,permalink_url&access_token=${accessToken}`
+        );
+        if (!response.ok) {
+            throw new Error('Failed to fetch posts.');
+        }
+
+        const data = await response.json();
+        const postList = document.querySelector('.post-list');
+
+        data.data.forEach(post => {
+            const postElement = document.createElement('div');
+            postElement.classList.add('post');
+
+            const image = post.full_picture || 'https://via.placeholder.com/400x200?text=No+Image';
+            const message = post.message ? post.message.substring(0, 100) + (post.message.length > 100 ? '...' : '') : 'No content available.';
+            const permalink = post.permalink_url || '#';
+
+            postElement.innerHTML = `
+                <img src="${sanitizeHTML(image)}" alt="Post Image">
+                <div class="post-content">
+                    <p>${sanitizeHTML(message)}</p>
+                    <a href="${sanitizeHTML(permalink)}" target="_blank">Read More</a>
+                </div>
+            `;
+            postList.appendChild(postElement);
+        });
+    } catch (error) {
+        console.error('Error fetching Facebook posts:', error);
+        document.querySelector('.post-list').innerHTML = `<p style="text-align: center; color: var(--light-text);">Unable to load Facebook posts at this time.</p>`;
+    }
+}
+
+// Sanitize HTML to prevent XSS
+function sanitizeHTML(str) {
+    const tempDiv = document.createElement('div');
+    tempDiv.textContent = str;
+    return tempDiv.innerHTML;
+}
+
+// Initialize Facebook Posts Fetching
+document.addEventListener('DOMContentLoaded', fetchFacebookPosts);
     </script>
 </body>
 </html>
