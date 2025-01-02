@@ -22,7 +22,7 @@ Javatari = {
 
     // General configuration
     AUTO_START:                     true,
-    AUTO_POWER_ON_DELAY:            5000,                       // -1: no auto Power-ON; >= 0: wait specified milliseconds before Power-ON
+    AUTO_POWER_ON_DELAY:            3000,                       // -1: no auto Power-ON; >= 0: wait specified milliseconds before Power-ON
     CARTRIDGE_SHOW_RECENT:          true,
     CARTRIDGE_CHANGE_DISABLED:      false,
     CARTRIDGE_LABEL_COLORS:         "",                         // Space-separated colors for Label, Background, Border. e.g. "#f00 #000 transparent". Leave "" for defaults
